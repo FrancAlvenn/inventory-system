@@ -161,8 +161,6 @@ CRUD-based web applications and can be expanded with additional features based o
 real-world requirements.
 
 
----
-
 ## Message of Appreciation
 Thank you, Sir Aldrin John Tamayo, for your excellent teaching during the Backend 101 Training Seminar.
 Your expertise has greatly expanded our knowledge and skills in backend development.
