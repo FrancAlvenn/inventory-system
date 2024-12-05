@@ -1,11 +1,9 @@
 # Backend Web Development 101 Project
 
----
 
 ## Documentation
 Project by: Franc Alvenn Dela Cruz
 
----
 
 ## Project Description
 The Inventory Management System (IMS) is a backend web application designed to manage
@@ -165,6 +163,19 @@ real-world requirements.
 
 ---
 
+## Message of Appreciation
+Thank you, Sir Aldrin John Tamayo, for your excellent teaching during the Backend 101 Training Seminar.
+Your expertise has greatly expanded our knowledge and skills in backend development.
+
+A special thanks to the Bayan Academy staff for organizing this training seminar and providing us
+with the opportunity to learn, upskill, and grow. Your support is truly appreciated.
+
+from Franc Alvenn Dela Cruz
+
+---
+
 Author: Aldrin John Tamayo
+
 Date Created: November 28, 2024
+
 Version: 0.1
