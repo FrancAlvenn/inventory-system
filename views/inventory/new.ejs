@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Inventory</title>
+</head>
+<body>
+    
+    <h1>Create New Inventory</h1>
+
+    <a href="/inventory">View Inventory</a>
+
+    <br><br>
+
+    <form action="/inventory" method="POST">
+        <section>
+            <label for="itemName">Item Name: </label>
+            <input type="text" name="itemName" id="itemName" placeholder="Item Name">
+
+            <label for="category">Category: </label>
+            <input type="text" name="category" id="category" placeholder="Category">
+
+            <label for="quantity">Quantity: </label>
+            <input type="number" name="quantity" id="quantity" placeholder="Quantity">
+
+            <label for="price">Price: </label>
+            <input type="number" name="price" id="price" placeholder="Price">
+
+            <label for="description">Description: </label>
+            <input type="text" name="description" id="description" placeholder="Description">
+
+            <button>Add Item</button>
+        </section>
+    </form>
+</body>
+</html>

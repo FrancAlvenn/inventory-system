@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+</head>
+<body>
+
+    <a href="/">Back</a>
+
+    <h1>Inventory Management System</h1>
+
+    <a href="/inventory/new">Add New Item</a>
+
+    <ul>
+        <% for(let item of inventory) { %>
+            <li> <%= item.itemName %> : <%= item.quantity %>, $<%= item.price %> <a href="/inventory/<%= item.id %>">Show more details</a></li>
+        <% } %>
+    </ul>
+
+</body>
+</html>
