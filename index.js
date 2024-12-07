@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-
+app.use(express.static(path.join(__dirname, 'dist'))) // Static files - tailwindcss
 
 //Test Data
 let inventory = [
@@ -40,6 +40,8 @@ let inventory = [
         description: 'RAM'
     }
 ];
+
+
 
 
 
