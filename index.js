@@ -60,37 +60,6 @@ const itemSchema = new mongoose.Schema({
 
 const Inventory = mongoose.model('Item', itemSchema);
 
-//Test Data
-let inventory = [
-    {
-        id: uuidV4(),
-        itemName: 'Monitors',
-        category: 'Electronics',
-        quantity: 5,
-        price: 150.00,
-        description: 'Monitor',
-        createdAt: Date.now
-    },
-    {
-        id: uuidV4(),
-        itemName: 'CPUs',
-        category: 'Electronics',
-        quantity: 10,
-        price: 15000.00,
-        description: 'CPU'
-    },
-    {
-        id: uuidV4(),
-        itemName: 'RAMs',
-        category: 'Electronics',
-        quantity: 12,
-        price: 950.00,
-        description: 'RAM'
-    }
-];
-
-
-
 
 
 // Routes //
