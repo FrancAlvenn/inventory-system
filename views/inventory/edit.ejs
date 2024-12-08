@@ -4,30 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Inventory</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/@vimesh/style"></script>
 </head>
-<body>
+<body class="min-h-screen p-10">
     
-    <h1>Edit Inventory</h1>
+    <a href="/inventory" ><i class="fa-solid fa-chevron-left hover:text-blue-500 px-3 mb-5"></i>View Inventory</a>
 
-    <a href="/inventory">View Inventory</a>
+    <h1 class="text-3xl text-blue-500 mb-5">Edit Item</h1>
+
 
     <form action="/inventory/<%= item.id %>?_method=PUT" method="POST">
-        <label for="itemName">Item Name: </label>
-        <input type="text" name="itemName" id="itemName" value="<%= item.itemName %>">
+        <section class="flex flex-col gap-2">
+            
+            <div class="flex flex-col w-full">
+                <label for="itemName">Item Name: </label>
+                <input type="text" name="name" id="name" value="<%= item.name %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+            </div>
 
-        <label for="category">Category: </label>
-        <input type="text" name="category" id="category" value="<%= item.category %>">
+            <div class="flex flex-col w-full">
+                <label for="category">Category: </label>
+                <input type="text" name="category" id="category" value="<%= item.category %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+            </div>
 
-        <label for="quantity">Quantity: </label>
-        <input type="number" name="quantity" id="quantity" value="<%= item.quantity %>">
+            <div class="flex flex-col w-full">
+                <label for="quantity">Quantity: </label>
+                <input type="number" name="quantity" id="quantity" value="<%= item.quantity %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+            </div>
 
-        <label for="price">Price: </label>
-        <input type="number" name="price" id="price" value="<%= item.price %>">
+            <div class="flex flex-col w-full">
+                <label for="price">Price: </label>
+                <input type="number" name="price" id="price" value="<%= item.price %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+            </div>
 
-        <label for="description">Description: </label>
-        <input type="text" name="description" id="description" value="<%= item.description %>">
-        
-        <button type="submit">Save</button>
+            <div class="flex flex-col w-full">
+                <label for="description">Description: </label>
+                <input type="text" name="description" id="description" value="<%= item.description %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500"></input>
+            </div>
+            
+            <button type="submit" class="bg-blue-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-blue-600 transition-colors w-full">Save</button>
+        </section>
     </form>
 </body>
 </html>

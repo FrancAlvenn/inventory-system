@@ -4,20 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/@vimesh/style"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="flex flex-col min-h-screen p-10">
 
-    <a href="/">Back</a>
+    <a href="/"><i class="fa-solid fa-chevron-left hover:text-blue-500 px-3"></i>Home</a>
 
-    <h1>Inventory Management System</h1>
+    <div class="flex align-center justify-between gap-5 py-5">
+        <h1 class="text-3xl text-blue-500">Item List</h1>
+        <a href="/inventory/new" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">Add New Item</a>
+    </div>
 
-    <a href="/inventory/new">Add New Item</a>
+    <table>
+        <thead class="text-center">
+            <tr class="border border-gray-300 ">
+                <th class="py-3">Name</th>
+                <th class="py-3">Category</th>
+                <th class="py-3">Quantity</th>
+                <th class="py-3">Price</th>
+                <th class="py-3">Description</th>
+                <th class="py-3">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <% for(let item of inventory) { %>
+                <tr class="border border-gray-300 hover:bg-blue-300 cursor-pointer" onclick="location.href='/inventory/<%= item.id %>'">
+                    <td class="py-3 text-blue-500"><a href="/inventory/<%= item.id %>"><%= item.name %></a></td>
+                    <td><%= item.category %></td>
+                    <td><%= item.quantity %></td>
+                    <td>₱ <%= item.price %></td>
+                    <td><%= item.description %></td>
+                    <td>
+                        <span class="flex gap-3 justify-center">
+                            <a href="/inventory/<%= item.id %>/edit"><span class="w-7 h-7 bg-blue-500 rounded-full flex justify-center items-center"><i class="fa-regular fa-pen-to-square text-white"></i></span></a>
+                            <form action="/inventory/<%= item.id %>?_method=DELETE" method="POST">
+                                <button type="submit"><span class="w-7 h-7 bg-red-500 rounded-full flex justify-center items-center"><i class="fa-regular fa-trash-can text-white"></i></span></button>
+                            </form>
+                        </span>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
 
-    <ul>
-        <% for(let item of inventory) { %>
-            <li> <%= item.itemName %> : <%= item.quantity %>, $<%= item.price %> <a href="/inventory/<%= item.id %>">Show more details</a></li>
-        <% } %>
-    </ul>
 
 </body>
 </html>

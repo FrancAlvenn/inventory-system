@@ -4,33 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Inventory</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/@vimesh/style"></script>
 </head>
-<body>
-    
-    <h1>Create New Inventory</h1>
+<body class="min-h-screen p-10">
 
-    <a href="/inventory">View Inventory</a>
+    <a href="/inventory" ><i class="fa-solid fa-chevron-left hover:text-blue-500 px-3 mb-5"></i>View Inventory</a>
 
-    <br><br>
+    <h1 class="text-3xl text-blue-500 mb-5">Create New Inventory</h1>
+
+
 
     <form action="/inventory" method="POST">
-        <section>
-            <label for="itemName">Item Name: </label>
-            <input type="text" name="itemName" id="itemName" placeholder="Item Name">
+        <section class="flex flex-col gap-2">
 
-            <label for="category">Category: </label>
-            <input type="text" name="category" id="category" placeholder="Category">
+            <div class="flex flex-col w-full">
+                <label for="name">Item Name </label>
+                <input type="text" name="name" id="name" placeholder="Item Name" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+            </div>
 
-            <label for="quantity">Quantity: </label>
-            <input type="number" name="quantity" id="quantity" placeholder="Quantity">
+            <div class="flex flex-col w-full">
+                <label for="category">Category: </label>
+                <input type="text" name="category" id="category" placeholder="Category" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+            </div>
 
-            <label for="price">Price: </label>
-            <input type="number" name="price" id="price" placeholder="Price">
+            <div class="flex flex-col w-full">
+                <label for="quantity">Quantity: </label>
+                <input type="number" name="quantity" id="quantity" placeholder="Quantity" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+            </div>
 
-            <label for="description">Description: </label>
-            <input type="text" name="description" id="description" placeholder="Description">
+            <div class="flex flex-col  w-full">
+                <label for="price">Price: </label>
+                <input type="number" name="price" id="price" placeholder="Price" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+            </div>
 
-            <button>Add Item</button>
+            <div class="flex flex-col w-full">
+                <label for="description">Description: </label>
+                <input type="text" name="description" id="description" placeholder="Description" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500"></input>
+            </div>
+
+            <button type="submit" class="bg-blue-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-blue-600 transition-colors w-full">Add Item</button>
         </section>
     </form>
 </body>

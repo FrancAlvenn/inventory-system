@@ -3,3 +3,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@media (max-width: 580px) {
+    table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+
+    button {
+        padding: 10px 20px;
+        font-size: 10px
+    }
+
+    .flex {
+        flex-direction: column;
+    }
+
+    table th, table td {
+        padding: 8px;
+        text-align: left;
+    }
+}

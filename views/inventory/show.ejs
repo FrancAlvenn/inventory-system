@@ -4,30 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show Inventory</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="/output.css" rel="stylesheet">
+    <script src="https://unpkg.com/@vimesh/style"></script>
 </head>
-<body>
+<body class="min-h-screen p-10">
 
-    <h1>Show Inventory</h1>
+    <a href="/inventory" ><i class="fa-solid fa-chevron-left hover:text-blue-500 px-3 mb-5"></i>View Inventory</a>
 
-    <a href="/inventory">View Inventory</a>
+    <p class="text-3xl text-blue-500 mb-5">Show Inventory</p>
 
-    <br><br>
 
-    <h2>Item Name: <%= item.itemName %></h2>
+    <div class="flex flex-col gap-5 border border-gray-300 rounded-lg p-4 w-72">
+        <p class="font-bold text-xl">Item Name: <%= item.name %></p>
+        <p>Category: <%= item.category %></p>
+        <p>Quantity: <%= item.quantity %></p>
+        <p>Price: $<%= item.price %></p>
+        <p>Description: <%= item.description %></p>
 
-    <h3>Category: <%= item.category %></h3>
+        <div class="flex flex-col justify-between gap-1">
+            <a href="/inventory/<%= item.id %>/edit" class="bg-blue-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-blue-600 transition-colors text-center">Edit</a>
+            <form action="/inventory/<%= item.id %>?_method=DELETE" method="POST">
+                <button type="submit" class="bg-red-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-red-600 transition-colors w-full">Delete</button">
+            </form>
+        </div>
+    </div>
 
-    <p>Quantity: <%= item.quantity %></p>
-
-    <p>Price: $<%= item.price %></p>
-
-    <p>Description: <%= item.description %></p>
-
-    <button><a href="/inventory/<%= item.id %>/edit">Edit</a></button>
-
-    <form action="/inventory/<%= item.id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete</button">
-    </form>
 
 </body>
 </html>

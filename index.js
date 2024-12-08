@@ -13,6 +13,53 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'dist'))) // Static files - tailwindcss
 
+
+//Mongoose
+const mongoose = require('mongoose');
+const { create } = require('domain');
+const { stat } = require('fs');
+mongoose.connect('mongodb://localhost:27017/inventory');
+
+//Connect to MongoDB
+const db = mongoose.connection;
+
+//Check connection
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log('Connected to MongoDB');
+});
+
+
+//Schema
+const itemSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    category: {
+        type: String,
+        required: true
+    },
+    quantity: {
+        type: Number,
+        default: 0
+    },
+    price: {
+        type: Number,
+        default: 0.00
+    },
+    description: {
+        type: String,
+        default: ''
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+const Inventory = mongoose.model('Item', itemSchema);
+
 //Test Data
 let inventory = [
     {
@@ -21,7 +68,8 @@ let inventory = [
         category: 'Electronics',
         quantity: 5,
         price: 150.00,
-        description: 'Monitor'
+        description: 'Monitor',
+        createdAt: Date.now
     },
     {
         id: uuidV4(),
@@ -55,8 +103,18 @@ app.get('/', (req, res) => {
 
 //List route
 app.get('/inventory', (req, res) => {
-    res.render('inventory/index', {inventory});
+
+    // Get all items from the database
+    Inventory.find()
+        .then((inventory) => {
+            res.render('inventory/index', { inventory });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
 });
+
 
 
 //New route
@@ -67,48 +125,94 @@ app.get('/inventory/new', (req, res) => {
 
 //Create route
 app.post('/inventory', (req, res) => {
-    const { itemName, category, quantity, price, description } = req.body;
-    const newItem = { id: uuidV4(), itemName, category, quantity, price, description };
+    const { name, category, quantity, price, description } = req.body;
 
-    // Add the new item to the inventory
-    inventory.push(newItem);
-    res.redirect('/inventory');
+    // Create a new item
+    const item = new Inventory({
+        name: name,
+        category: category,
+        quantity: quantity,
+        price: price,
+        description: description
+    });
+
+    // Save the item
+    item.save()
+        .then(() => {
+            Inventory.find()
+                .then((inventory) => {
+                    res.render('inventory/index', {
+                        inventory,
+                        message: 'Item created successfully!'
+                    });
+                })
+            console.log('Item created successfully!');
+        }).catch((err) => {
+            console.log(err);
+        });
+
 });
 
 
 //Show route
 app.get('/inventory/:id', (req, res) => {
     const { id } = req.params;
-    const item = inventory.find(item => item.id === id);
-    res.render('inventory/show', { item });
+
+    // Find the item
+    Inventory.findById(id)
+        .then((item) => {
+            res.render('inventory/show', { item });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 
 //Edit route
 app.get('/inventory/:id/edit', (req, res) => {
     const { id } = req.params;
-    const item = inventory.find(item => item.id === id);
-    res.render('inventory/edit', { item });
+
+    // Find the item
+    Inventory.findById(id)
+        .then((item) => {
+            res.render('inventory/edit', { item });
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 
 //Update route
 app.put('/inventory/:id', (req, res) => {
     const { id } = req.params;
-    const { itemName, quantity, price } = req.body;
-    const item = inventory.find(item => item.id === id);
-    item.itemName = itemName;
-    item.quantity = quantity;
-    item.price = price;
-    res.redirect(`/inventory/${id}`);
+    const { name, category, quantity, price, description } = req.body;
+
+    // Update the item
+    Inventory.updateOne({ _id: id }, { $set: {name, category, quantity, price, description} })
+        .then(() => {
+            res.redirect(`/inventory/${id}`);
+        })
+        .catch((err) => {
+            console.log(err);
+    })
+
 });
 
 
 //Delete route
 app.delete('/inventory/:id', (req, res) => {
     const { id } = req.params;
-    inventory = inventory.filter(item => item.id !== id);
-    res.redirect('/inventory');
+
+    // Delete the item
+    Inventory.deleteOne({ _id: id })
+        .then(() => {
+            res.redirect('/inventory');
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 });
 
 
