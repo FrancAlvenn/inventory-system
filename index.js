@@ -16,8 +16,6 @@ app.use(express.static(path.join(__dirname, 'dist'))) // Static files - tailwind
 
 //Mongoose
 const mongoose = require('mongoose');
-const { create } = require('domain');
-const { stat } = require('fs');
 mongoose.connect('mongodb://localhost:27017/inventory');
 
 //Connect to MongoDB
