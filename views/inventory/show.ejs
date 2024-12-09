@@ -14,18 +14,19 @@
     <p class="text-3xl text-blue-500 mb-5">Show Inventory</p>
 
 
-    <div class="flex flex-col gap-5 border border-gray-300 rounded-lg p-4 w-72">
-        <p class="font-bold text-xl">Item Name: <%= item.name %></p>
-        <p>Category: <%= item.category %></p>
-        <p>Quantity: <%= item.quantity %></p>
-        <p>Price: $<%= item.price %></p>
-        <p>Description: <%= item.description %></p>
-
-        <div class="flex flex-col justify-between gap-1">
-            <a href="/inventory/<%= item.id %>/edit" class="bg-blue-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-blue-600 transition-colors text-center">Edit</a>
-            <form action="/inventory/<%= item.id %>?_method=DELETE" method="POST">
-                <button type="submit" class="bg-red-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-red-600 transition-colors w-full">Delete</button">
-            </form>
+    <div class="flex justify-center align-center">
+        <div class="flex flex-col gap-5 border border-gray-300 rounded-lg p-4 w-96">
+            <p class="font-bold text-xl">Item Name: <%= item.name %></p>
+            <p>Category: <%= item.category %></p>
+            <p>Quantity: <%= item.quantity %></p>
+            <p>Price: $<%= item.price %></p>
+            <p>Description: <%= item.description %></p>
+            <div class="flex flex-col justify-between gap-1">
+                <a href="/inventory/<%= item.id %>/edit" class="bg-blue-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-blue-600 transition-colors text-center">Edit</a>
+                <form action="/inventory/<%= item.id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="bg-red-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-red-600 transition-colors w-full">Delete</button">
+                </form>
+            </div>
         </div>
     </div>
 
