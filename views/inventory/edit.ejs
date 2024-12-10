@@ -19,27 +19,27 @@
             
             <div class="flex flex-col w-full">
                 <label for="itemName">Item Name: </label>
-                <input type="text" name="name" id="name" value="<%= item.name %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+                <input type="text" name="name" id="name" value="<%= item.name %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500" required>
             </div>
 
             <div class="flex flex-col w-full">
                 <label for="category">Category: </label>
-                <input type="text" name="category" id="category" value="<%= item.category %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+                <input type="text" name="category" id="category" value="<%= item.category %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500" required>
             </div>
 
             <div class="flex flex-col w-full">
                 <label for="quantity">Quantity: </label>
-                <input type="number" name="quantity" id="quantity" value="<%= item.quantity %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+                <input type="number" name="quantity" id="quantity" value="<%= item.quantity %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500" required>
             </div>
 
             <div class="flex flex-col w-full">
                 <label for="price">Price: </label>
-                <input type="number" name="price" id="price" value="<%= item.price %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500">
+                <input type="number" name="price" id="price" value="<%= item.price %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500" required>
             </div>
 
             <div class="flex flex-col w-full">
                 <label for="description">Description: </label>
-                <input type="text" name="description" id="description" value="<%= item.description %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500"></input>
+                <input type="text" name="description" id="description" value="<%= item.description %>" class="p-3 border border-gray-300 rounded-lg hover:border-blue-500" required>
             </div>
             
             <button type="submit" class="bg-blue-500 text-white px-6 py-2 mt-4 rounded-lg hover:bg-blue-600 transition-colors w-full">Save</button>
