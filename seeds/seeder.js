@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Inventory = require('../models/inventory');
+const fs = require('fs');
+const path = require('path');
 
 mongoose.connect('mongodb://localhost:27017/inventory')
     .then(() => {
@@ -23,7 +25,11 @@ const seedUsers = async () => {
         category: 'Electronics',
         quantity: 6,
         price: 29990.00,
-        description: 'High-end gaming laptop!'
+        description: 'High-end gaming laptop!',
+        image: {
+            data: fs.readFileSync(path.resolve(__dirname + '../../uploads/AcerAspire5.png' )),
+            contentType: 'image/png'
+        }
     });
 
     const newItem2 = new Inventory({
@@ -31,7 +37,11 @@ const seedUsers = async () => {
         category: 'Electronics',
         quantity: 5,
         price: 19999.99,
-        description: 'Mid-range laptop!'
+        description: 'Mid-range laptop!',
+        image: {
+            data: fs.readFileSync(path.resolve(__dirname + '../../uploads/AcerAspire3.png' )),
+            contentType: 'image/png'
+        }
     });
 
     await newItem.save();

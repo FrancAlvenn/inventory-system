@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Inventory = require('../../models/inventory');
+const fs = require('fs');
+const path = require('path');
 
 mongoose.connect('mongodb://localhost:27017/inventory')
     .then(() => {
@@ -42,7 +44,7 @@ exports.new = async (req, res) => {
 
 
 //Create
-exports.create = async (req, res) => {
+exports.create = async (req, res, next) => {
     try {
         const { name, category, quantity, price, description } = req.body;
 
@@ -52,7 +54,11 @@ exports.create = async (req, res) => {
             category: category,
             quantity: quantity,
             price: price,
-            description: description
+            description: description,
+            image: {
+                data: fs.readFileSync(path.resolve(__dirname + '../../../uploads/' + req.file.filename)),
+                contentType: 'image/png'
+            }
         });
 
         // Save the item to the database
@@ -114,7 +120,19 @@ exports.update = async (req, res) => {
         const { name, category, quantity, price, description } = req.body;
 
         // Update the item
-        Inventory.updateOne({ _id: id }, { $set: {name, category, quantity, price, description} })
+        Inventory.updateOne({ _id: id }, {
+            $set: {
+                name,
+                category,
+                quantity,
+                price,
+                description,
+                image: {
+                    data: fs.readFileSync(path.resolve(__dirname + '../../../uploads/' + req.file.filename)),
+                    contentType: 'image/png'
+                }
+                }
+            })
             .then(() => {
                 res.redirect(`/inventory/${id}`);
             })
