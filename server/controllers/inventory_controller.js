@@ -56,7 +56,7 @@ exports.create = async (req, res, next) => {
             price: price,
             description: description,
             image: {
-                data: fs.readFileSync(path.resolve(__dirname + '../../../uploads/' + req.file.filename)),
+                data: req.file ? fs.readFileSync(path.resolve(__dirname + '../../../uploads/' + req.file.filename)) : fs.readFileSync(path.resolve(__dirname + '../../../uploads/NoImage.png')),
                 contentType: 'image/png'
             }
         });
@@ -118,6 +118,26 @@ exports.update = async (req, res) => {
     try {
         const { id } = req.params;
         const { name, category, quantity, price, description } = req.body;
+
+        //If no new image is uploaded
+        if (!req.file) {
+            Inventory.updateOne({ _id: id }, {
+                $set: {
+                    name,
+                    category,
+                    quantity,
+                    price,
+                    description
+                }
+            })
+            .then(() => {
+                res.redirect(`/inventory/${id}`);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            return
+        }
 
         // Update the item
         Inventory.updateOne({ _id: id }, {
